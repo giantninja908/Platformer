@@ -1,4 +1,44 @@
 /*This part is just calling all the varialbes, these are the most important parts*/
+function full_screen()
+{
+  // check if user allows full screen of elements. This can be enabled or disabled in browser config. By default its enabled.
+  //its also used to check if browser supports full screen api.
+  if("fullscreenEnabled" in document || "webkitFullscreenEnabled" in document || "mozFullScreenEnabled" in document || "msFullscreenEnabled" in document) 
+  {
+    if(document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled)
+    {
+
+
+      var element = document.getElementById("fullScreen")
+      //requestFullscreen is used to display an element in full screen mode.
+      if("requestFullscreen" in element) 
+      {
+        element.requestFullscreen();
+      } 
+      else if ("webkitRequestFullscreen" in element) 
+      {
+        element.webkitRequestFullscreen();
+      } 
+      else if ("mozRequestFullScreen" in element) 
+      {
+        element.mozRequestFullScreen();
+      } 
+      else if ("msRequestFullscreen" in element) 
+      {
+        element.msRequestFullscreen();
+      }
+
+
+
+
+    }
+  }
+  else
+  {
+    alert("Y U NO GET FULLSCREEN!?!?!")
+  }
+}
+
 var Space = false
 var canvas = document.getElementById("canvas")
 var ctx = canvas.getContext("2d")
@@ -220,6 +260,9 @@ document.onkeydown = function(e){
 
       Space = true
     }
+  }
+  if(e.keyCode == 70){
+    full_screen()
   }
   if(e.keyCode == 9){
     alert(plrY.toString() + " " + horz.toString())
